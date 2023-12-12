@@ -1,21 +1,21 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { ProductComponent } from './product.component';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('ProductComponent', () => {
+  let component: ProductComponent;
+  let fixture: ComponentFixture<ProductComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
       imports: [RouterTestingModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [ProductComponent],
     });
 
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
+    component.product = { id: 'id', title: 'title', description: 'description', photo: 'photo', price: 10, stock: 2 };
+
     fixture.detectChanges();
   });
 
