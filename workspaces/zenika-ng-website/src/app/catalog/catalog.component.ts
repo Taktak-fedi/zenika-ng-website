@@ -2,22 +2,30 @@ import { Component, Inject } from '@angular/core';
 import { BasketItem } from '../basket/basket.types';
 import { Product } from '../product/product.types';
 import { ApiService } from '../shared/services/api.service';
+import { CatalogService } from './catalog.service';
+import { BasketService } from '../basket/basket.service';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
 })
 export class CatalogComponent {
-  protected products: Product[] = [];
+  protected get products(): Product[] {
+    return this.catalogService.items;
+  }
 
-  private basketItems: BasketItem[] = [];
+  protected get basketItems(): BasketItem[] {
+    return this.bascketService.items;
+  }
 
   constructor(
     @Inject('WELCOME_MSG') protected welcomeMsg: string,
     private apiService: ApiService,
+    private catalogService :CatalogService,
+    private bascketService : BasketService,
   ) {
-    this.apiService.getProducts().subscribe((products) => (this.products = products));
-    this.apiService.getBasket().subscribe((basketItems) => (this.basketItems = basketItems));
+    this.catalogService.fetch().subscribe();
+    this.bascketService.fetch().subscribe();
   }
 
   protected get basketTotal(): number {
@@ -25,8 +33,7 @@ export class CatalogComponent {
   }
 
   protected addToBasket(product: Product): void {
-    this.apiService.addToBasket(product.id).subscribe((basketItem) => {
-      this.basketItems.push(basketItem);
+    this.bascketService.addItem(product.id).subscribe(() => {
       this.decreaseStock(product);
     });
   }
