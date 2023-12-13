@@ -5,6 +5,7 @@ import { ApiService } from '../shared/services/api.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
+  standalone: true,
 })
 export class FooterComponent {
   protected fullYear = new Date().getUTCFullYear();

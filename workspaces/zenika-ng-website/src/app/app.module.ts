@@ -12,22 +12,24 @@ import { MenuComponent } from './menu/menu.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: WELCOME_MSG,
       useValue: 'Bienvenue sur Zenika Ecommerce',
     },
   ],
-  declarations: [
-    AppComponent,
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MenuComponent,
+    ProductDetailsComponent,
     BasketComponent,
     CatalogComponent,
     FooterComponent,
     ProductComponent,
-    MenuComponent,
-    ProductDetailsComponent,
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

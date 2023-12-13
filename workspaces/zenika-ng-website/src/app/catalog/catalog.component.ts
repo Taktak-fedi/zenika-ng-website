@@ -1,13 +1,18 @@
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { zip } from 'rxjs';
 import { WELCOME_MSG } from '../app.token';
 import { BasketService } from '../basket/basket.service';
 import { CatalogService } from './catalog.service';
+import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.types';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
+  standalone: true,
+  imports: [RouterLink, NgFor, NgIf, ProductComponent, CurrencyPipe],
 })
 export class CatalogComponent implements OnInit {
   protected welcomeMsg = inject(WELCOME_MSG);
