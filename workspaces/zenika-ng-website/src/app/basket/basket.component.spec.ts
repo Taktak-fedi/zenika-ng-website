@@ -10,7 +10,7 @@ describe('BasketComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, BasketComponent],
+      imports: [BasketComponent, RouterTestingModule],
       providers: [
         {
           provide: BasketService,

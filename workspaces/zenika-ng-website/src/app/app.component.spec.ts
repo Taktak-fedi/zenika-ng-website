@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -9,9 +11,11 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule, AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-});
+      imports: [AppComponent, RouterTestingModule],
+    }).overrideComponent(AppComponent, {
+      remove: { imports: [FooterComponent, MenuComponent] },
+      add: { schemas: [CUSTOM_ELEMENTS_SCHEMA] },
+    });
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

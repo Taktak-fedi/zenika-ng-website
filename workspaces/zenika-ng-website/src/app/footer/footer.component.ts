@@ -1,20 +1,21 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ApiService } from '../shared/services/api.service';
 
 @Component({
+  standalone: true,
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   protected fullYear = new Date().getUTCFullYear();
 
-  private apiService = inject(ApiService);
+  #apiService = inject(ApiService);
 
-  private document = inject(DOCUMENT);
+  #document = inject(DOCUMENT);
 
   protected __kaboom__() {
-    this.apiService.__kaboom__().subscribe(() => this.document.location.reload());
+    this.#apiService.__kaboom__().subscribe(() => this.#document.location.reload());
   }
 }

@@ -10,7 +10,7 @@ describe('MenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, MenuComponent],
+      imports: [MenuComponent, RouterTestingModule],
       providers: [
         {
           provide: ApiService,
